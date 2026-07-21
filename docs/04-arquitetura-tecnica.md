@@ -27,7 +27,9 @@ Volta para [PLANNING.md](../PLANNING.md). Modelo narrativo em [01-narrative-desi
 ```
 users/{userId}
   campaignStartDate: timestamp
-  currentDay: number            // 1-21
+  currentDay: number            // 1-21, só avança por interação (ver seção 4)
+  dayCompletedAt: timestamp | null   // quando o check-in do currentDay foi concluído
+  lastInteractionAt: timestamp
   stage: "ovo" | "larval" | "juvenil" | "quase-adulto" | "final"
   axes: {
     trabalho: number (0-100),
@@ -74,6 +76,7 @@ Isso evita ter uma segunda chamada de LLM só para analisar a conversa — a ext
 ## 4. Cálculo de estágio e final
 
 - **Estágio:** função pura de `currentDay` (ver tabela em [01-narrative-design.md](01-narrative-design.md#3-estágios-de-evolução-ligados-aos-dias-da-campanha)), não depende dos eixos — todo jogador passa pelos mesmos estágios visuais no mesmo ritmo, o que muda é o *conteúdo* da conversa.
+- **Avanço de `currentDay`:** incrementa **só quando `dayCompletedAt` é preenchido** (pelo menos uma troca no check-in do dia) **e** já se passaram 24h reais desde o último avanço — implementa a regra de ausência definida em [01-narrative-design.md](01-narrative-design.md#regra-de-ausência-o-que-acontece-se-o-jogador-não-abrir-o-app-num-dia). Sem interação, `currentDay` fica parado indefinidamente.
 - **Evento de Virada:** disparado quando `flags` do mesmo `topic` aparecem 3+ vezes nas memórias entre os dias 2–9, verificado a cada novo check-in a partir do dia 10.
 - **Final:** calculado no dia 21 a partir da **média** de `axesHistory` (não do valor pontual do último dia), conforme thresholds em [01-narrative-design.md](01-narrative-design.md#4-finais).
 
@@ -85,5 +88,10 @@ Isso evita ter uma segunda chamada de LLM só para analisar a conversa — a ext
 
 ## 6. Voz
 
-- STT: nativo do dispositivo (Android SpeechRecognizer / iOS Speech framework), texto como fallback sempre visível na UI (nunca esconder o campo de texto atrás da voz).
-- TTS: voz sintética não-humana para o bicho, coerente com o visual grotesco — avaliar opções (voz do próprio SO com pitch/timbre alterado vs. serviço de voz sintética dedicado) na Fase 2 do roadmap.
+Plano completo de captura e geração de voz (STT, TTS, opção de clonagem a partir da própria voz do desenvolvedor, latência e custo) em [12-pipeline-de-voz.md](12-pipeline-de-voz.md).
+
+## 7. Resiliência quando a API falha
+
+- **LLM (Claude) indisponível ou erro de rede:** o app cai para uma resposta local pré-definida e neutra do bicho (ex. algo como "sonolento"/"meio confuso agora"), nunca uma tela de erro genérica — preserva a ficção mesmo quando o backend falha. A conversa não trava esperando: o jogador pode tentar de novo em instantes.
+- **STT/TTS indisponível:** cai automaticamente para o modo texto, sem interromper a cena (ver [12-pipeline-de-voz.md](12-pipeline-de-voz.md#6-fallback-quando-a-voz-falha)).
+- **Firestore indisponível:** o app deve permitir continuar a conversa localmente (cache) e sincronizar quando a conexão voltar, para não perder uma sessão inteira por uma queda momentânea de rede.

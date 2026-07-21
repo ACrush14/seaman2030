@@ -32,6 +32,7 @@ Não existe "uma" plataforma — ela muda conforme a fase de produção, e isso 
 - **Como registrar feedback:** perguntas curtas pós-sessão (ver seção 4).
 
 ### Fase 3: vertical slice mobile
+- **Onboarding antes do Dia 1:** age-gate simples ([11-dados-privacidade.md](11-dados-privacidade.md#5-classificação-etária-e-age-gate)) + pedido de permissão de microfone e notificações com explicação amigável do porquê (não só o prompt padrão do sistema operacional) — isso é parte do primeiro contato com o jogo, não um detalhe técnico à parte.
 - **Quem testa:** círculo próximo, 3–5 pessoas, via Teste Interno do Play Console.
 - **Checklist por sessão:** o dia avançou corretamente? A notificação disparou? A memória citou algo real da conversa anterior? A transição visual (Cutscene 1/2) rodou sem travar?
 - **Modo de teste acelerado:** usar o recurso já previsto no roadmap ([05-roadmap-producao.md](05-roadmap-producao.md)) para não depender de 7 dias reais por rodada de teste.

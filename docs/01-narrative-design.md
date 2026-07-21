@@ -30,6 +30,16 @@ Toda interação (check-in estruturado ou conversa livre) empurra três eixos, c
 | Dias 15–20 | **Ato 3 — Espelho** | **Quase-adulto** | O bicho passa a **refletir de volta** padrões observados ("percebi que toda sexta você fala que dormiu mal — isso é normal pra você ou já virou rotina?"). Conversas mais vulneráveis, menos piadas de efeito, mais presença. |
 | Dia 21 | **Epílogo** | **Forma final** (variável) | Cutscene de encerramento + um dos finais (seção 4). Sem novo ciclo automático — é o fim da campanha. |
 
+### Regra de ausência: o que acontece se o jogador não abrir o app num dia
+
+Decisão de design necessária e antes não resolvida: **o "Dia N" da campanha só avança quando o jogador completa a interação daquele dia, não pelo simples passar do relógio.** Ou seja, se o jogador some por 4 dias reais, o jogo não "pula" 4 dias de conteúdo sozinho — ele espera, e quando o jogador volta, ainda está no mesmo dia da campanha em que parou.
+
+- **Por quê:** evita que a narrativa avance sem o jogador (o que quebraria a lógica de "o bicho evolui porque você prestou atenção nele") e evita a sensação de culpa/obrigação que o design já rejeita explicitamente (ver seção 6).
+- **O que marca "completar o dia":** pelo menos uma troca de mensagem no check-in daquele dia — não precisa ser uma conversa longa.
+- **Limite de avanço:** no máximo 1 dia de campanha avança por período de 24h reais, mesmo que o jogador converse várias vezes seguidas — preserva o ritmo de 3 semanas mesmo que alguém tente "maratonar" o jogo (nota: isso também é a base do "modo de teste acelerado" do roadmap, que existe justamente pra poder pular essa trava durante testes internos).
+- **Ausência prolongada:** dias sem abrir o app não penalizam os eixos de Trabalho/Saúde (não é justo inferir nada sobre a vida real do jogador a partir do silêncio), mas podem refletir no eixo de **Vínculo** (ver seção 2) — o bicho pode comentar a ausência com leveza ao reencontrar o jogador, nunca com cobrança.
+- **Notificação:** o lembrete diário (push) continua sendo enviado normalmente enquanto o dia não for completado, servindo de convite a voltar, não de cobrança.
+
 ## 4. Finais
 
 Calculados no Dia 21 a partir da média dos três eixos ao longo da jornada (não só do valor final — pra recompensar consistência, não só o último dia). Todos os finais são escritos para serem **narrativamente satisfatórios**, nunca punitivos — a diferença é de tom e imagem, não de "sucesso vs. fracasso".

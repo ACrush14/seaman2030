@@ -18,6 +18,8 @@ Reimaginação moderna do conceito de **Seaman** (Vivarium/SEGA, 1999/2000, Drea
 | [docs/09-direcao-de-arte.md](docs/09-direcao-de-arte.md) | Direção de arte, fidelidade visual por fase, ambiente, UI/UX, paleta |
 | [docs/10-calendario-roteiro-21-dias.md](docs/10-calendario-roteiro-21-dias.md) | Calendário dia-a-dia (1 a 21) mapeando conteúdo de cada dia da campanha |
 | [docs/11-dados-privacidade.md](docs/11-dados-privacidade.md) | Guarda de dados, privacidade, consentimento (LGPD) |
+| [docs/12-pipeline-de-voz.md](docs/12-pipeline-de-voz.md) | Captura de voz (STT), geração da voz do bicho (TTS/clonagem), latência e custo |
+| [docs/13-audio-e-musica.md](docs/13-audio-e-musica.md) | Ambiente sonoro, efeitos, música |
 | [docs/03-storyboard-cutscenes.md](docs/03-storyboard-cutscenes.md) | Storyboard das cenas-chave (eclosão, evoluções, finais) |
 | [docs/04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md) | Stack, modelo de dados, arquitetura de prompt/API |
 | [docs/05-roadmap-producao.md](docs/05-roadmap-producao.md) | Marcos de produção, do protótipo à campanha completa |
@@ -85,3 +87,11 @@ Manter o DNA (bicho de estimação estranho, rabugento, que **conversa de verdad
 - **Balanceamento dos 3 eixos e dos finais:** evitar que o jogo pareça "julgar" o jogador (ex. "final ruim" por ter uma semana difícil de verdade). Os finais devem ser variações narrativas, não punições.
 - **Latência da conversa por voz** (STT → LLM → TTS) precisa ficar baixa o suficiente pra não quebrar a ilusão de diálogo natural — vale prototipar isso cedo (fase 1/2) antes de investir em visual 3D.
 - **Duração da campanha (21 dias):** é uma proposta inicial — validar no playtest da Fase 1 se o ritmo é rápido/lento demais antes de produzir os 3 atos completos.
+
+## 7. Postura de monetização (decisão explícita)
+
+Como o custo de API (LLM + TTS) é recorrente por usuário/sessão (ver risco acima e [docs/12-pipeline-de-voz.md](docs/12-pipeline-de-voz.md#5-latência-e-custo)), essa questão não pode ficar em aberto indefinidamente. Postura para o MVP e os testes fechados (Fases 1–5 deste roadmap): **projeto pessoal/hobby, sem monetização, uso restrito a você e a um grupo pequeno de testers convidados.** Isso significa:
+
+- Sem cobrança de nenhum tipo enquanto o jogo estiver em teste fechado.
+- O custo de API nessa fase é seu, por isso o controle de orçamento (limite de turnos/dia, cache de prompt) em [04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md#5-custo-e-limites-de-api) não é opcional — é o que mantém o projeto viável como hobby.
+- Se um dia o projeto for além do círculo fechado (lançamento público), a decisão de modelo de negócio (pago único, assinatura, freemium com limite de conversas) precisa ser retomada como uma decisão própria, discutida antes da Fase 4/5 — não é algo a assumir por omissão.
