@@ -14,6 +14,10 @@ Reimaginação moderna do conceito de **Seaman** (Vivarium/SEGA, 1999/2000, Drea
 | [docs/02-roteiro-dialogos.md](docs/02-roteiro-dialogos.md) | Roteiros de diálogo (check-ins e conversa livre) por fase |
 | [docs/06-banco-perguntas-modernas.md](docs/06-banco-perguntas-modernas.md) | Catálogo de perguntas modernizadas (2026) sobre trabalho/saúde por ato |
 | [docs/07-banco-perguntas-fundacao.md](docs/07-banco-perguntas-fundacao.md) | Perguntas de fundação: identidade, família, relacionamento, autoimagem, tecnologia, filosofia |
+| [docs/08-plataforma-e-testes.md](docs/08-plataforma-e-testes.md) | Plataforma por fase, distribuição de testes, plano de testes e feedback |
+| [docs/09-direcao-de-arte.md](docs/09-direcao-de-arte.md) | Direção de arte, fidelidade visual por fase, ambiente, UI/UX, paleta |
+| [docs/10-calendario-roteiro-21-dias.md](docs/10-calendario-roteiro-21-dias.md) | Calendário dia-a-dia (1 a 21) mapeando conteúdo de cada dia da campanha |
+| [docs/11-dados-privacidade.md](docs/11-dados-privacidade.md) | Guarda de dados, privacidade, consentimento (LGPD) |
 | [docs/03-storyboard-cutscenes.md](docs/03-storyboard-cutscenes.md) | Storyboard das cenas-chave (eclosão, evoluções, finais) |
 | [docs/04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md) | Stack, modelo de dados, arquitetura de prompt/API |
 | [docs/05-roadmap-producao.md](docs/05-roadmap-producao.md) | Marcos de produção, do protótipo à campanha completa |
