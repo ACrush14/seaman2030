@@ -23,6 +23,7 @@ Reimaginação moderna do conceito de **Seaman** (Vivarium/SEGA, 1999/2000, Drea
 | [docs/14-roteiro-ato1-completo.md](docs/14-roteiro-ato1-completo.md) | Roteiro de produção completo do Ato 1 (Dias 1–7), cena por cena |
 | [docs/15-roteiro-ato2-completo.md](docs/15-roteiro-ato2-completo.md) | Roteiro completo do Ato 2 (Dias 8–14), incluindo o Evento de Virada |
 | [docs/16-roteiro-ato3-e-epilogo-completo.md](docs/16-roteiro-ato3-e-epilogo-completo.md) | Roteiro completo do Ato 3 (Dias 15–20) e os 4 finais (Dia 21) |
+| [prototype-fase1/](prototype-fase1/README.md) | Código: protótipo de texto puro do Ato 1 (Fase 1 do roadmap) |
 | [docs/03-storyboard-cutscenes.md](docs/03-storyboard-cutscenes.md) | Storyboard das cenas-chave (eclosão, evoluções, finais) |
 | [docs/04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md) | Stack, modelo de dados, arquitetura de prompt/API |
 | [docs/05-roadmap-producao.md](docs/05-roadmap-producao.md) | Marcos de produção, do protótipo à campanha completa |

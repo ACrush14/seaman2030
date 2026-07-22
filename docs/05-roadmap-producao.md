@@ -16,11 +16,11 @@ Volta para [PLANNING.md](../PLANNING.md).
 
 **Objetivo:** validar se a personalidade e os check-ins do Ato 1 (Dias 1–7) soam certos — engraçados e genuínos, nunca clínicos — antes de investir em voz ou visual.
 
-- Implementar o backend mínimo (chamada à API da Claude com o prompt de personalidade de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md#3-prompt-de-personalidade))
-- Simular os 7 dias do Ato 1 via CLI/chat de texto, com um "relógio" manual avançando o dia
-- Incluir desde já um **modo de teste acelerado** (avançar `currentDay` manualmente, sem esperar tempo real) — jogadores do Seaman original faziam isso adiantando o relógio do console para testar o jogo inteiro em poucas horas; vale adotar como feature de dev desde a Fase 1 (ver [00-pesquisa-referencia.md](00-pesquisa-referencia.md#3-nota-de-produção-modo-de-teste-acelerado))
-- Testar a extração estruturada de `axes_delta` e `new_memories`
-- Critério de saída: 2–3 playtesters concordam que o bicho "parece ele mesmo" e que os check-ins não soam a formulário
+- [x] Implementar o backend mínimo (chamada à API da Claude com o prompt de personalidade de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md#3-prompt-de-personalidade)) — ver [prototype-fase1/](../prototype-fase1/README.md)
+- [x] Simular os 7 dias do Ato 1 via CLI/chat de texto, com um "relógio" manual avançando o dia (comando `/avancar`)
+- [x] Incluir desde já um **modo de teste acelerado** (avançar `currentDay` manualmente, sem esperar tempo real) — jogadores do Seaman original faziam isso adiantando o relógio do console para testar o jogo inteiro em poucas horas; vale adotar como feature de dev desde a Fase 1 (ver [00-pesquisa-referencia.md](00-pesquisa-referencia.md#3-nota-de-produção-modo-de-teste-acelerado))
+- [x] Testar a extração estruturada de `axes_delta` e `new_memories` — implementado via tool use forçado (`seaman_turn`)
+- [ ] Critério de saída: 2–3 playtesters concordam que o bicho "parece ele mesmo" e que os check-ins não soam a formulário — falta rodar o playtest de verdade (requer chave de API)
 
 ## Fase 2 — Voz (protótipo desktop/web)
 

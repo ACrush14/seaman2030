@@ -1,0 +1,14 @@
+{
+  "name": "seaman2030-prototype-fase1",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Protótipo de texto puro do Ato 1 (Fase 1 do roadmap) — sem app, sem voz.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.0"
+  }
+}
