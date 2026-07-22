@@ -20,6 +20,7 @@ Reimaginação moderna do conceito de **Seaman** (Vivarium/SEGA, 1999/2000, Drea
 | [docs/11-dados-privacidade.md](docs/11-dados-privacidade.md) | Guarda de dados, privacidade, consentimento (LGPD) |
 | [docs/12-pipeline-de-voz.md](docs/12-pipeline-de-voz.md) | Captura de voz (STT), geração da voz do bicho (TTS/clonagem), latência e custo |
 | [docs/13-audio-e-musica.md](docs/13-audio-e-musica.md) | Ambiente sonoro, efeitos, música |
+| [docs/14-roteiro-ato1-completo.md](docs/14-roteiro-ato1-completo.md) | Roteiro de produção completo do Ato 1 (Dias 1–7), cena por cena |
 | [docs/03-storyboard-cutscenes.md](docs/03-storyboard-cutscenes.md) | Storyboard das cenas-chave (eclosão, evoluções, finais) |
 | [docs/04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md) | Stack, modelo de dados, arquitetura de prompt/API |
 | [docs/05-roadmap-producao.md](docs/05-roadmap-producao.md) | Marcos de produção, do protótipo à campanha completa |
