@@ -54,4 +54,6 @@ Dado o teor (relacionamento, fidelidade, saúde mental, política/religião), re
 
 ## 6. Nota sobre custo/terceiros
 
-As conversas passam pela API da Claude (terceiro) para gerar respostas — isso deve constar de forma simples no aviso de consentimento ("suas mensagens são processadas por um serviço de IA para gerar as respostas do personagem"), e vale revisar a política de retenção de dados do provedor de API ao formalizar isso antes de um lançamento público.
+**Atualizado:** o motor de diálogo do MVP passou a ser 100% local e roteirizado (sem API — ver [prototype-fase1/](../prototype-fase1/README.md) e [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md)). Isso é uma boa notícia de privacidade: **nenhuma resposta do jogador sai do aparelho** no caminho atual — não há terceiro processando as conversas, e esse item deixa de ser necessário no aviso de consentimento por enquanto.
+
+Isso só volta a valer se o caminho de evolução opcional via LLM (ver [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md#8-caminho-de-evolução-futuro-diálogo-gerado-por-llm-fora-do-mvp)) for adotado no futuro — nesse caso, reativar o aviso: "suas mensagens são processadas por um serviço de IA para gerar as respostas do personagem", e revisar a política de retenção de dados do provedor de API antes de qualquer lançamento público.

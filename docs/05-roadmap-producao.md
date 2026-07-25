@@ -8,7 +8,7 @@ Volta para [PLANNING.md](../PLANNING.md).
 - [x] Design narrativo: atos, eixos, estágios, finais ([01-narrative-design.md](01-narrative-design.md))
 - [x] Roteiro de diálogos e guia de voz ([02-roteiro-dialogos.md](02-roteiro-dialogos.md))
 - [x] Storyboard das cutscenes-chave ([03-storyboard-cutscenes.md](03-storyboard-cutscenes.md))
-- [x] Arquitetura técnica (Unity + Firebase + Claude API) ([04-arquitetura-tecnica.md](04-arquitetura-tecnica.md))
+- [x] Arquitetura técnica ([04-arquitetura-tecnica.md](04-arquitetura-tecnica.md)) — desenhada originalmente como Unity + Firebase + Claude API, **revisada após Fase 1/2** para motor local roteirizado (sem API/Firebase no MVP)
 - [ ] Nome de trabalho definitivo (ver nota de IP em [PLANNING.md](../PLANNING.md)) — decidir antes de qualquer divulgação pública
 - [ ] Playtest do roteiro em texto puro com 2–3 pessoas próximas (ler as falas em voz alta / simular por chat) para validar tom antes de qualquer produção visual
 
@@ -32,11 +32,15 @@ Volta para [PLANNING.md](../PLANNING.md).
 
 ## Fase 3 — Vertical slice mobile (Ato 1 completo)
 
-- Modelo 3D básico do personagem (estágio Ovo + Larval) em Unity URP
-- App mobile mínimo: eclosão (Cena 1 do storyboard) + 7 dias de check-in/conversa livre jogáveis fim a fim
-- Notificações push como gatilho do check-in diário
-- Persistência real via Firebase (Auth + Firestore, modelo de dados de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md#2-modelo-de-dados-firestore))
-- Critério de saída: alguém de fora consegue jogar os 7 dias sem suporte seu e entende o que o jogo é
+**Simplificado após a Fase 1/2:** como o motor é local e roteirizado (sem API), esta fase não precisa de backend nem de Firebase pra funcionar — só portar a lógica já testada em [prototype-fase1/src](../prototype-fase1/src) pra C#. Ver [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md#1-visão-geral-dos-componentes-mvp--motor-local).
+
+- [ ] Portar `state.js` + `engine.js` + `classify.js` + `rules.js` + `script.js` (dias 1–7, pra começar) pra C# — a lógica é pura (sem I/O), então a porta é direta
+- [ ] Modelo 3D básico do personagem (estágio Ovo + Larval) em Unity URP
+- [ ] App mobile mínimo: eclosão (Cena 1 do storyboard) + 7 dias de check-in/conversa livre jogáveis fim a fim
+- [ ] Persistência local (arquivo local / PlayerPrefs — mesmo formato do `game-state.json` do protótipo, sem Firebase)
+- [ ] Notificações push como gatilho do check-in diário
+- [ ] Reintroduzir a regra completa de avanço de dia (24h reais + interação — o protótipo usa `/avancar` manual só pra testar rápido)
+- [ ] Critério de saída: alguém de fora consegue jogar os 7 dias sem suporte seu e entende o que o jogo é
 
 ## Fase 4 — Campanha completa (Atos 2 e 3 + finais)
 

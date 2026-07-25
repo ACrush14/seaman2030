@@ -46,7 +46,7 @@ Manter o DNA (bicho de estimação estranho, rabugento, que **conversa de verdad
 
 - **Mecânica híbrida:** no dia a dia o jogador conversa livremente com o bicho (humor, curiosidade sobre o mundo humano, no espírito do Seaman original). Periodicamente (um "ritual" diário) o bicho puxa um **check-in estruturado** sobre trabalho e saúde — nunca com cara de app de bem-estar clínico, sempre no tom sarcástico/curioso do personagem. As respostas desses check-ins (e sinais extraídos da conversa livre) alimentam três eixos internos que impulsionam a evolução do bicho. Detalhes em [docs/01-narrative-design.md](docs/01-narrative-design.md).
 - **Campanha fechada:** a jornada tem duração definida (proposta: 21 dias corridos, 3 semanas/3 atos) e um **final real** — não um loop infinito. O final é determinado pelo acumulado dos três eixos de cuidado ao longo da jornada, com variações (não é "vitória vs. derrota", é reflexo do que a jornada real foi).
-- **Voz → conversa real:** reconhecimento de fala moderno (STT do dispositivo) + LLM (API da Claude) gerando as respostas do bicho em tempo real, com personalidade consistente via system prompt (rabugento, curioso, sarcástico, nunca condescendente sobre saúde mental/trabalho).
+- **Voz → conversa real:** reconhecimento de fala moderno (STT do dispositivo) convertendo pra texto, respondido pelo motor de diálogo — personalidade consistente (rabugento, curioso, sarcástico, nunca condescendente sobre saúde mental/trabalho). *(Visão original previa um LLM gerando as respostas; o MVP validado usa um motor roteirizado local — ver seção 4 e [docs/04](docs/04-arquitetura-tecnica.md#8-caminho-de-evolução-futuro-diálogo-gerado-por-llm-fora-do-mvp).)*
 - **Memória:** o bicho lembra de conversas anteriores e das respostas dos check-ins (nome do jogador, fatos, padrões — "você mencionou 3 vezes essa semana que dormiu mal").
 - **Plataforma:** app mobile (Android/iOS). Notificações push substituem o hábito de "ligar o Dreamcast pra ver como ele está" e viram o gatilho do check-in diário.
 - **Visual:** design perturbador/cômico (rosto humano realista em corpo de peixe) preservado, com fidelidade visual moderna (3D em tempo real, Unity URP).
@@ -70,11 +70,13 @@ Manter o DNA (bicho de estimação estranho, rabugento, que **conversa de verdad
 
 ## 4. Stack técnica
 
+> **Atualizado após Fase 1/2:** validamos um motor 100% local e roteirizado (sem API, sem custo) que já cobre a campanha inteira — ver [prototype-fase1/](prototype-fase1/README.md). Isso simplifica a stack do MVP: nada de backend nem Firebase como requisito. Detalhes e o caminho de evolução opcional via LLM em [docs/04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md).
+
 - **App:** Unity (mobile, URP) para 3D real e controle fino de animação do personagem.
+- **Cérebro conversacional (MVP):** motor de diálogo roteirizado local, portado de [prototype-fase1/src](prototype-fase1/src) (dados do roteiro + classificação por palavra-chave) — sem API, sem backend, resposta instantânea.
 - **Voz → texto:** STT nativo do dispositivo (Android SpeechRecognizer / iOS Speech framework), com fallback em nuvem se precisar de mais precisão.
-- **Cérebro conversacional:** backend (Node/Python) chamando a API da Claude com system prompt de personalidade + contexto de memória (RAG leve) + extração estruturada dos eixos de cuidado a partir da conversa. Detalhes em [docs/04-arquitetura-tecnica.md](docs/04-arquitetura-tecnica.md).
-- **Texto → voz:** TTS moderno para timbre estranho/não-humano, coerente com o visual grotesco.
-- **Persistência:** Firebase (Auth + Firestore) para estado do bicho, eixos de cuidado, progresso na campanha (dia/ato atual) e histórico de conversas.
+- **Texto → voz:** TTS nativo do dispositivo/SO com timbre alterado (pitch/rate), validado em [prototype-fase2/](prototype-fase2/README.md) — sem custo.
+- **Persistência (MVP):** local (arquivo/PlayerPrefs). Firebase (Auth + Firestore) vira opcional, só se/quando quiser sincronizar entre dispositivos — não bloqueia o vertical slice nem a campanha completa.
 
 ## 5. Marcos sugeridos (resumo — detalhado em docs/05-roadmap-producao.md)
 
