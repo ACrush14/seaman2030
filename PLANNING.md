@@ -61,8 +61,8 @@ Manter o DNA (bicho de estimação estranho, rabugento, que **conversa de verdad
 - Memória de curto e médio prazo (respostas de check-in + últimas N conversas) persistida por usuário
 - Campanha vertical-slice: Ato 1 completo (eclosão + primeira semana) jogável fim a fim, para validar tom e ritmo antes de produzir os 21 dias inteiros
 
-**Fora do MVP:**
-- Os 3 atos completos e os múltiplos finais (fase 2 de produção, ver roadmap)
+**Fora do MVP (do produto mobile — o roteiro/lógica dos 3 atos já existe e está testado no protótipo local, ver [prototype-fase1/](prototype-fase1/README.md#roteiro-completo-21-dias)):**
+- Os 3 atos completos e os múltiplos finais **em Unity/mobile** (fase 2+ de produção, ver roadmap)
 - Múltiplos bichos / "aquário" social entre usuários
 - Narrador estilo Leonard Nimoy (precisaria de dublagem própria — custo alto)
 - Hardware alternativo (smart speaker, etc.)

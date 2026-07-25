@@ -22,6 +22,7 @@ Volta para [PLANNING.md](../PLANNING.md).
 - [x] Testar a extração estruturada de eixos e memórias — implementado via classificação por palavra-chave (sim/não, idade, área, sentimento) em vez de extração por LLM
 - [x] Critério de saída: rodado e verificado — simulação completa dos dias 1–2, com ramificações e ajuste de eixos funcionando corretamente, respostas em 0–1ms, sem nenhuma chave de API
 - [ ] Decisão em aberto: o roteiro fixo é suficiente pra experiência final, ou vale a pena reintroduzir geração dinâmica via LLM pra conversas livres e Atos mais avançados (onde o roteiro fixo tende a ficar repetitivo em replays)? Ver nota em [prototype-fase1/README.md](../prototype-fase1/README.md#o-que-este-protótipo-cobre-e-o-que-não-cobre)
+- [x] **Adiantado da Fase 4:** o roteiro completo dos 21 dias (Atos 1–3, Evento de Virada, os 4 finais) já está implementado e testado no motor — ver checklist da Fase 4 abaixo.
 
 ## Fase 2 — Voz (protótipo desktop/web)
 
@@ -39,10 +40,12 @@ Volta para [PLANNING.md](../PLANNING.md).
 
 ## Fase 4 — Campanha completa (Atos 2 e 3 + finais)
 
-- Produzir estágios visuais Juvenil e Quase-adulto + as 3 transições ([03-storyboard-cutscenes.md](03-storyboard-cutscenes.md))
-- Implementar o Evento de Virada (lógica de detecção de flags + cutscene própria)
-- Implementar os 4 finais (lógica de cálculo + cutscenes + tela de epílogo não-numérica)
-- Memória de médio prazo completa (busca por tópico, não só últimas N mensagens)
+- [x] **Conteúdo/lógica implementados e testados no motor roteirizado** (adiantado da Fase 1, antes da Fase 3 de Unity): os 21 dias completos, o Evento de Virada com bifurcação real (dispara entre os dias 10–12, por acúmulo de sinais de excesso de trabalho ou garantido até o dia 12), e o cálculo dos 4 finais por média de eixos ao longo da jornada. Ver [prototype-fase1/README.md](../prototype-fase1/README.md#roteiro-completo-21-dias).
+  - Balanceamento testado via simulação automatizada: Florescimento, Alerta e Equilíbrio confirmados alcançáveis com padrões de resposta plausíveis (positivo consistente, negativo consistente, misto); o Reencontro (final secreto) permanece propositalmente quase inatingível numa jogada normal — consistente com sua descrição em [01-narrative-design.md](01-narrative-design.md#4-finais) como gancho "fora do MVP", não uma meta normal de jogo.
+- [ ] Produzir estágios visuais Juvenil e Quase-adulto + as 3 transições ([03-storyboard-cutscenes.md](03-storyboard-cutscenes.md)) — isso é trabalho de arte/Unity, continua pendente pra Fase 3+
+- [ ] Cutscenes reais do Evento de Virada e dos finais (a lógica e o texto já existem no motor; falta a camada visual)
+- [ ] Tela de epílogo não-numérica em Unity (o motor já gera um resumo textual não-numérico — falta a versão visual)
+- [ ] Memória de médio prazo completa (busca por tópico, não só últimas N mensagens) — só relevante se a Fase 1 decidir reintroduzir LLM
 
 ## Fase 5 — Polimento
 

@@ -17,6 +17,8 @@ function initialState() {
     axesHistory: [],
     memories: [],
     labels: {},
+    turningPointTriggered: false,
+    ending: null,
   };
 }
 
@@ -31,9 +33,13 @@ export function saveState(state) {
   writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), "utf-8");
 }
 
+// Ver docs/01-narrative-design.md#3-estágios-de-evolução-ligados-aos-dias-da-campanha
 export function stageForDay(day) {
   if (day <= 1) return "ovo";
-  return "larval";
+  if (day <= 7) return "larval";
+  if (day <= 14) return "juvenil";
+  if (day <= 20) return "quase-adulto";
+  return "final";
 }
 
 export function clampAxis(value) {
