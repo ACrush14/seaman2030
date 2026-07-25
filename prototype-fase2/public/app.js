@@ -48,8 +48,9 @@ async function sendTurn(text) {
   const roundTripMs = Math.round(performance.now() - startedAt);
   appendTurn("bicho", data.reply);
   speak(data.reply);
-  latencyEl.textContent = `latência da API: ${data.latencyMs}ms | ida-e-volta total: ${roundTripMs}ms`;
+  latencyEl.textContent = `motor local: ${data.latencyMs}ms | ida-e-volta total (rede local): ${roundTripMs}ms`;
   renderStatus(data);
+  if (data.dayEnded) appendTurn("bicho", "(fim do roteiro de hoje — use \"Avançar dia\")");
 }
 
 textForm.addEventListener("submit", (e) => {
@@ -65,6 +66,7 @@ advanceButton.addEventListener("click", async () => {
   const data = await resp.json();
   renderStatus(data);
   appendTurn("bicho", "(dia avançado — modo de teste acelerado)");
+  for (const line of data.openingLines ?? []) appendTurn("bicho", line);
 });
 
 // --- Reconhecimento de voz (push-to-talk) ---
@@ -98,9 +100,11 @@ if (SpeechRecognitionImpl) {
   talkButton.textContent = "Voz não suportada neste navegador — use o texto";
 }
 
-// Carrega o status inicial e dispara a fala de abertura do dia, se ainda não houver histórico.
+// Carrega o status inicial e mostra a fala de abertura do dia (sem falar em voz alta —
+// navegadores bloqueiam áudio automático sem gesto do usuário).
 (async function init() {
   const resp = await fetch("/api/status");
   const data = await resp.json();
   renderStatus(data);
+  for (const line of data.openingLines ?? []) appendTurn("bicho", line);
 })();

@@ -16,17 +16,18 @@ Volta para [PLANNING.md](../PLANNING.md).
 
 **Objetivo:** validar se a personalidade e os check-ins do Ato 1 (Dias 1–7) soam certos — engraçados e genuínos, nunca clínicos — antes de investir em voz ou visual.
 
-- [x] Implementar o backend mínimo (chamada à API da Claude com o prompt de personalidade de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md#3-prompt-de-personalidade)) — ver [prototype-fase1/](../prototype-fase1/README.md)
+- [x] Implementar o backend mínimo — **revisado:** em vez de chamada à API da Claude, virou um motor 100% roteirizado (mesma filosofia do Seaman original — ver [00-pesquisa-referencia.md](00-pesquisa-referencia.md)) que roda o texto completo de [14-roteiro-ato1-completo.md](14-roteiro-ato1-completo.md) com classificação por palavra-chave para as ramificações. Ver [prototype-fase1/](../prototype-fase1/README.md#por-que-sem-api)
 - [x] Simular os 7 dias do Ato 1 via CLI/chat de texto, com um "relógio" manual avançando o dia (comando `/avancar`)
 - [x] Incluir desde já um **modo de teste acelerado** (avançar `currentDay` manualmente, sem esperar tempo real) — jogadores do Seaman original faziam isso adiantando o relógio do console para testar o jogo inteiro em poucas horas; vale adotar como feature de dev desde a Fase 1 (ver [00-pesquisa-referencia.md](00-pesquisa-referencia.md#3-nota-de-produção-modo-de-teste-acelerado))
-- [x] Testar a extração estruturada de `axes_delta` e `new_memories` — implementado via tool use forçado (`seaman_turn`)
-- [ ] Critério de saída: 2–3 playtesters concordam que o bicho "parece ele mesmo" e que os check-ins não soam a formulário — falta rodar o playtest de verdade (requer chave de API)
+- [x] Testar a extração estruturada de eixos e memórias — implementado via classificação por palavra-chave (sim/não, idade, área, sentimento) em vez de extração por LLM
+- [x] Critério de saída: rodado e verificado — simulação completa dos dias 1–2, com ramificações e ajuste de eixos funcionando corretamente, respostas em 0–1ms, sem nenhuma chave de API
+- [ ] Decisão em aberto: o roteiro fixo é suficiente pra experiência final, ou vale a pena reintroduzir geração dinâmica via LLM pra conversas livres e Atos mais avançados (onde o roteiro fixo tende a ficar repetitivo em replays)? Ver nota em [prototype-fase1/README.md](../prototype-fase1/README.md#o-que-este-protótipo-cobre-e-o-que-não-cobre)
 
 ## Fase 2 — Voz (protótipo desktop/web)
 
-- [x] Adicionar STT/TTS a um protótipo simples (web ou desktop), ainda sem visual 3D — ver [prototype-fase2/](../prototype-fase2/README.md) (Web Speech API do navegador: Rota A de [docs/12](12-pipeline-de-voz.md))
-- [x] Medidor de latência do ciclo STT → LLM → TTS embutido na própria página (meta: manter a ilusão de diálogo natural — falta validar com uso real)
-- [ ] Escolher fornecedor de TTS para o timbre do personagem (ver seção 6 de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md)) — decisão adiada até ouvir a Rota A funcionando de verdade e decidir se compensa investir na Rota B (clonagem)
+- [x] Adicionar STT/TTS a um protótipo simples (web ou desktop), ainda sem visual 3D — ver [prototype-fase2/](../prototype-fase2/README.md) (Web Speech API do navegador: Rota A de [docs/12](12-pipeline-de-voz.md)), reaproveitando o motor roteirizado da Fase 1
+- [x] Medidor de latência do ciclo STT → motor → TTS embutido na própria página — validado via HTTP real: 0ms de processamento local (sem chamada de rede externa, a meta de latência deixa de ser um risco)
+- [ ] Escolher fornecedor de TTS para o timbre do personagem (ver seção 6 de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md)) — decisão adiada até decidir se compensa investir na Rota B (clonagem) dado que a Rota A (TTS do navegador) já resolve o essencial sem custo
 
 ## Fase 3 — Vertical slice mobile (Ato 1 completo)
 

@@ -1,6 +1,6 @@
 import readline from "readline";
-import { loadState, saveState, stageForDay, applyAxesDelta, addMemories, advanceDay } from "./state.js";
-import { requestTurn } from "./claude.js";
+import { loadState, saveState, stageForDay, advanceDay } from "./state.js";
+import { advance, isDayComplete } from "./engine.js";
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const ask = (q) => new Promise((resolve) => rl.question(q, resolve));
@@ -11,26 +11,33 @@ function printStatus(state) {
   );
 }
 
-async function handleTurn(state, userText) {
-  const result = await requestTurn(state, userText);
-  console.log(`\nBicho: ${result.reply}\n`);
-  applyAxesDelta(state, result.axes_delta);
-  addMemories(state, state.currentDay, result.new_memories);
-  state.lastInteractionAt = new Date().toISOString();
-  if (!state.dayCompletedAt) state.dayCompletedAt = state.lastInteractionAt;
+function printLines(lines) {
+  for (const line of lines) {
+    console.log(`\nBicho: ${line}`);
+  }
+  console.log();
+}
+
+function runStep(state, userText) {
+  const startedAt = Date.now();
+  const { lines, dayEnded } = advance(state, userText);
+  const elapsedMs = Date.now() - startedAt;
+  printLines(lines);
+  console.log(`(respondido em ${elapsedMs}ms — roteiro local, sem API)`);
+  if (dayEnded) console.log("(fim do dia — use /avancar pra continuar)");
   saveState(state);
 }
 
 async function main() {
-  console.log("=== Seaman2030 — Protótipo de Texto (Fase 1, Ato 1) ===");
+  console.log("=== Seaman2030 — Protótipo de Roteiro (Fase 1, Ato 1) ===");
+  console.log("Roda 100% local, sem chave de API — respostas roteirizadas, como o Seaman original.");
   console.log("Comandos: /status  /avancar  /sair\n");
 
   const state = loadState();
   printStatus(state);
 
-  if (state.history.length === 0) {
-    console.log("(o bicho está falando pela primeira vez...)");
-    await handleTurn(state, null);
+  if (state.stepIndex === 0 && !state.waitingTopic) {
+    runStep(state, null);
   }
 
   while (true) {
@@ -51,17 +58,18 @@ async function main() {
       advanceDay(state);
       saveState(state);
       console.log(`\n(dia avançado — agora é o dia ${state.currentDay})`);
-      await handleTurn(state, null);
+      runStep(state, null);
       continue;
     }
 
     if (input.length === 0) continue;
 
-    try {
-      await handleTurn(state, input);
-    } catch (err) {
-      console.error("Erro ao falar com a API:", err.message);
+    if (isDayComplete(state)) {
+      console.log("\n(o roteiro de hoje já acabou — use /avancar pra ir pro próximo dia)\n");
+      continue;
     }
+
+    runStep(state, input);
   }
 
   rl.close();
