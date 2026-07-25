@@ -1,0 +1,87 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #0b1522;
+  color: #e6f0f5;
+}
+
+header h1 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+#status {
+  font-size: 0.85rem;
+  color: #7fa8b8;
+}
+
+#log {
+  min-height: 240px;
+  border: 1px solid #23384a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #0f1e2e;
+  white-space: pre-wrap;
+}
+
+.turn-user {
+  color: #9fd0ff;
+  margin-bottom: 0.5rem;
+}
+
+.turn-bicho {
+  color: #ffd68a;
+  margin-bottom: 1rem;
+}
+
+form#textForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+input#textInput {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #23384a;
+  background: #0f1e2e;
+  color: inherit;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #1c3b52;
+  color: inherit;
+}
+
+button:active {
+  background: #2a5170;
+}
+
+#voiceControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#talkButton.recording {
+  background: #7a2b2b;
+}
+
+#latency {
+  font-size: 0.8rem;
+  color: #7fa8b8;
+}
+
+#devControls {
+  border-top: 1px dashed #23384a;
+  padding-top: 1rem;
+}

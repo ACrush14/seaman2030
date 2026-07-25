@@ -24,9 +24,9 @@ Volta para [PLANNING.md](../PLANNING.md).
 
 ## Fase 2 — Voz (protótipo desktop/web)
 
-- Adicionar STT/TTS a um protótipo simples (web ou desktop), ainda sem visual 3D
-- Medir latência do ciclo STT → LLM → TTS (meta: manter a ilusão de diálogo natural)
-- Escolher fornecedor de TTS para o timbre do personagem (ver seção 6 de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md))
+- [x] Adicionar STT/TTS a um protótipo simples (web ou desktop), ainda sem visual 3D — ver [prototype-fase2/](../prototype-fase2/README.md) (Web Speech API do navegador: Rota A de [docs/12](12-pipeline-de-voz.md))
+- [x] Medidor de latência do ciclo STT → LLM → TTS embutido na própria página (meta: manter a ilusão de diálogo natural — falta validar com uso real)
+- [ ] Escolher fornecedor de TTS para o timbre do personagem (ver seção 6 de [04-arquitetura-tecnica.md](04-arquitetura-tecnica.md)) — decisão adiada até ouvir a Rota A funcionando de verdade e decidir se compensa investir na Rota B (clonagem)
 
 ## Fase 3 — Vertical slice mobile (Ato 1 completo)
 
